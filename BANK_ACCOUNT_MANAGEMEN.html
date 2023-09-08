@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const arr=[];
+     function BankAccount(accountNumber, name, type, balance)
+     {
+        this.AccountNumber=accountNumber;
+        this.Name=name;
+        this.Type=type;
+        this.Balance=balance;
+        (balance>=0)?this.Active=true:this.Active=false;
+        this.Deposit=function(dAmount)
+        {
+            this.Balance+=dAmount;
+            console.log(`Hey! ${this.Name} you're deposit this amount => ${dAmount}, now your Bank-Balance is this => ${this.Balance}.`);
+            (this.Balance>=0)?this.Active=true:null;
+           
+        };
+        this.Withdraw=function(wAmount)
+        {
+            if(this.Balance>=wAmount)
+            {
+                this.Balance-=wAmount;
+                console.log(`Hey! ${this.Name} you're deposit this amount => ${wAmount}, now your Bank-Balance is this => ${this.Balance}.`)
+            }
+            else
+            {
+                console.log(`Sorry daer ${this.Name}, you don't have sufficiant balance. You want to withdraw this amount => ${wAmount} and your Bank-Balance is this => ${this.Balance}.`)
+            }
+        };
+        this.checkBalance=function()
+        {
+            console.log(`Hey ${this.Name}! your Bank-Balance is this => ${this.Balance}.`)
+        };
+        this.isActive=function()
+        {
+            if(this.Balance>=0)
+            {
+                console.log(`Hey dear ${this.Name}! your Bank-Account is active. Stay tuned with us.`)
+            }
+            else
+            {
+                console.log(`Sorry dear ${this.Name}! your Bank-Account is not Active. Please "Deposit" some amount for activate your Bank-Account.`)
+           }
+        };
+     }
+
+     arr.push(new BankAccount(89868686986, "Rahul", "Sawings", 2));
+     arr.push(new BankAccount(89868687775, "Suraj", "Sawings", 4));
+     arr.push(new BankAccount(898654386986, "Saad", "Current", 1));
+     arr.push(new BankAccount(4442468686986, "Sajan", "Current", 9));
+     arr.push(new BankAccount(890028686986, "Atif", "Sawings", -1));
+
+
+
+     arr[0].Deposit(100);
+     arr[3].Withdraw(10000);
+     arr[1].checkBalance();
+     arr[3].isActive();
+     arr[4].Deposit(11);
+
+
+
+     getTotalBalnace=function(arr)
+     {
+        let totalBankBalance=0;
+        arr.forEach(ele => 
+        {
+            if(ele.Active==true)
+            {
+                totalBankBalance+=ele.Balance
+            }
+        })
+        console.log(`Total Bank Balance is this => ${totalBankBalance}`)
+     }
+     getTotalBalnace(arr);
+</script>
+</html>
